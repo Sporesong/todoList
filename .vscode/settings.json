@@ -2,11 +2,9 @@
   "css.validate": false,
   "less.validate": false,
   "scss.validate": false,
-  "stylelint.validate": [
-    "css",
-    "scss"
-  ],
-  "[html]": {
-    "editor.defaultFormatter": "vscode.html-language-features"
-  },
+  "eslint.validate": ["javascript", "html"],
+  "stylelint.validate": ["css", "scss"],
+  "editor.codeActionsOnSave": {
+    "source.fixAll": true
+  }
 }

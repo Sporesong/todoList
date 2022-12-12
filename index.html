@@ -1,9 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
-<!-- TODO: glöm ej att byta språk här -->
+<html lang="sv">
+
 
 <head>
   <meta charset="UTF-8" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Dosis:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="src/style/style.css" />
   <link rel="icon" type="image/ico" href="/favicon.ico" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Projekt</title>
@@ -11,8 +15,15 @@
 
 <body>
   <main>
-    <div class="app" id="app"></div> <!-- TODO: går bra att radera -->
-    <!-- TODO: skriv din kod här, innan script-taggen -->
+    <div class="pageContainer">
+      <h1 class="todoHeader">Att göra listan</h1>
+      <div class="inputContainer">
+        <input class="addToDo" type="text" placeholder="Lägg till uppgift här" />
+      <ul class="toDoList">
+
+      </ul>
+      </div>
+    </div> 
   </main>
 
   <!-- TODO
@@ -20,7 +31,7 @@
     - Kontrollera tillgänglighet: https://www.a11yproject.com/checklist/ & Chrome Lighthouse/Firefox Accessibility Tools
     - Validera genererade CSS: https://jigsaw.w3.org/css-validator/#validate_by_input
     -->
-  <script type="module" src="/src/main.js"></script>
+  <script src="./src/main.js"></script>
 </body>
 
 </html>

@@ -1,3 +1,4 @@
+/* stylelint-disable selector-class-pattern */
 @use "utils/a11y"; // Om det inte funkar, byt @use mot @import
 @use "vendor/reset";
 
@@ -13,84 +14,140 @@
   -moz-osx-font-smoothing: grayscale;
   text-size-adjust: 100%;
 }
+
 body {
   overflow: auto;
   color: #606c38;
-  background-color:#FEFAE0;
-  font-family: 'Dosis', Arial, sans-serif;
+  background-color: #fefae0;
+  font-family: Dosis, Arial, sans-serif;
   font-weight: 500;
 }
-.dark{
 
+header {
+  height: 30vh;
+  background-image: url("../../images/dimmaIBergen.jpg");
 }
-h1{
+
+h1 {
   margin: 0;
-	padding: 10px 20px;
-	text-transform: uppercase;
-	font-size: 3rem;
-	font-weight: 700;
+  padding: 10px 20px 0;
+  text-transform: uppercase;
+  font-size: 3rem;
+  font-weight: 700;
   text-align: center;
 }
-.inputContainer {
-	width: 360px;
-	margin: 0 auto;
-	border: 2px solid #283618;
-	box-shadow: 0 0 4px rgba(0, 0, 0, 0.3);
-}
-.addToDo {
-  width: 360px;
-	font-size: 18px;
-	color: #283618;
-	background: #fcfaef;
-	border: none;
-	width: 100%;
-	padding: 10px 10px 10px 20px;
-}
-ul {
-	cursor: pointer;
-	list-style: none;
-	margin: 0;
-	padding: 0;
-}
-li {
-	background: #fff;
-	padding-left: 10px;
-	line-height: 2em;
-	margin: 0;
-	color: #666;
-}
-li:nth-child(2n) {
-	background: #f7f7f7;
-}
-li.clicked {
-	color: gray;
-	text-decoration: line-through;
-}
-.addToDo:focus {
-	background: white;
-	border: 2px solid #BC6C25;
-	outline: none;
-	transition: 0.1s;
+
+h3 {
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 500;
 }
 
-i.fa-trash {
-	margin: 7px;
+ul {
+  cursor: pointer;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  background: #fff;
+  padding-left: 10px;
+  line-height: 2em;
+  margin: 0;
+  color: #666;
 }
 
 span {
-	background: tomato;
-	height: 35px;
-	width: 0;
-	margin-right: 10px;
-	margin-left: -10px;
-	text-align: center;
-	display: inline-block;
-	color: white;
-	opacity: 0;
-	transition: 0.2s linear;
+  background: tomato;
+  height: 35px;
+  width: 0;
+  margin-right: 10px;
+  margin-left: -10px;
+  text-align: center;
+  display: inline-block;
+  color: white;
+  opacity: 0;
+  transition: 0.2s linear;
+}
+
+.pageContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.leftMenuDesktop {
+  visibility: hidden;
+  height: 0;
+}
+
+.inputContainer {
+  width: 360px;
+  margin: 0 auto;
+}
+
+.addToDo {
+  font-size: 18px;
+  color: #283618;
+  background: #fcfaef;
+  border: 2px solid #283618;
+  width: 100%;
+  padding: 10px 10px 10px 20px;
+  border-radius: 22px;
+}
+
+li:nth-child(2n) {
+  background: #f7f7f7;
+}
+
+li.clicked {
+  color: gray;
+  text-decoration: line-through;
+}
+
+.addToDo:focus {
+  background: white;
+  border: 2px solid #bc6c25;
+  outline: none;
+  transition: 0.1s;
+}
+
+i.fa-trash {
+  margin: 7px;
 }
 
 li:hover span {
-	opacity: 1;
-	width: 40px;
+  opacity: 1;
+  width: 40px;
+}
+
+@media screen and (min-width: 800px) {
+  main {
+
+  }
+
+  .pageContainer {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    background-color: beige;
+    gap: 10px;
+  }
+
+  .leftMenuDesktop {
+    visibility: visible;
+    background-color: #bc6c25;
+    height: 100vh;
+    grid-column: 1/1;
+  }
+
+  .inputContainer {
+    grid-column: 1/1;
+    padding: 0 8px;
+  }
+
+  .nyUppgift {
+    margin: 10px 0 10px 20px;
+    color: #283618;
+    padding: 0 10px;
+  }
 }

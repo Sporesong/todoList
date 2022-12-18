@@ -13,7 +13,6 @@
   text-rendering: optimizelegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-size-adjust: 100%;
 }
 
 body {
@@ -55,30 +54,26 @@ ul {
 }
 
 li {
-  background: #fff;
-  padding-left: 10px;
+  background: #dda15e;
   line-height: 2em;
   margin: 0;
-  color: #666;
+  color: #283618;
 }
 
-span {
-  background: tomato;
-  height: 35px;
-  width: 0;
-  margin-right: 10px;
-  margin-left: -10px;
-  text-align: center;
-  display: inline-block;
-  color: white;
-  opacity: 0;
-  transition: 0.2s linear;
-}
-
-label {
+label,
+.item {
   font-size: 1.5rem;
   font-weight: 700;
   color: #283618;
+}
+
+.material-symbols-outlined {
+  font-variation-settings:
+    "FILL" 0,
+    "wght" 700,
+    "GRAD" 0,
+    "opsz" 48;
+  margin-right: 10px;
 }
 
 .pageContainer {
@@ -107,11 +102,11 @@ label {
 }
 
 li:nth-child(2n) {
-  background: #f7f7f7;
+  background: #dda15e;
 }
 
 li.clicked {
-  color: gray;
+  color: #fefae0;
   text-decoration: line-through;
 }
 
@@ -153,6 +148,17 @@ li:hover span {
     padding-left: 80px;
   }
 
+  button {
+    background-color: #dda15e;
+    color: #283618;
+    outline: 2px solid #bc6c25;
+    border-radius: 10px;
+    display: block;
+    margin: 10px auto;
+    font-size: 1.3rem;
+    font-weight: 600;
+  }
+
   .line {
     height: 2px;
     background: #283618;
@@ -177,12 +183,23 @@ li:hover span {
 
   .inputContainer {
     grid-column: 1/1;
-    padding: 0 15px;
+    padding: 10px 15px;
     position: relative;
   }
 
   .addToDoLabel {
     margin-left: 15px;
+  }
+
+  .categoryMenu li a {
+    display: block;
+    padding: 13px 30px;
+    border-bottom: 3px solid #283618;
+    color: #283618;
+    background-color: #dda15e;
+    font-size: 1rem;
+    position: relative;
+    margin: 10px 0;
   }
 
   input[type="date"] {

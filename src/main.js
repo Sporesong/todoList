@@ -1,4 +1,4 @@
-import "style/style.scss";
+import "./style/style.scss";
 
 let tasks = [];
 
@@ -21,12 +21,14 @@ function addTask(text) {
 }
 //spara uppgift när man trycker på lägg till knappen
 const addToDoButton = document.querySelector(".addToDoButton");
-addToDoButton.addEventListener("submit", submitEvent());
-function submitEvent() {
-	submitEvent.preventDefault();
-	const input = document.querySelector(".addToDo");
+console.log(addToDoButton);
+addToDoButton.addEventListener("click", submitEvent);
+function submitEvent(event) {
+	console.log("ger");
+	event.preventDefault();
+	const input = document.querySelector("#addToDo");
 	const text = input.value;
-	if (text !== "") {
+	if (text) {
 		addTask(text);
 		input.value = "";
 		input.focus();

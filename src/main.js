@@ -17,14 +17,12 @@ function addTask(text) {
 	const task = {text: text, checked: false, id: Date.now()};
 
 	tasks.push(task);
-	console.log(tasks);
+	//här ska tasks vara
 }
 //spara uppgift när man trycker på lägg till knappen
 const addToDoButton = document.querySelector(".addToDoButton");
-console.log(addToDoButton);
 addToDoButton.addEventListener("click", submitEvent);
 function submitEvent(event) {
-	console.log("ger");
 	event.preventDefault();
 	const input = document.querySelector("#addToDo");
 	const text = input.value;
@@ -34,6 +32,7 @@ function submitEvent(event) {
 		input.focus();
 	}
 	else { 
-		document.getElementsByName("addToDo")[0].placeholder="Fyll i en uppgift";
+		document.getElementsByName("addToDo")[0].placeholder="Fyll i en uppgift"; 
+		//påminnelse att skriva något om man försöker lägga till tom uppgift
 	}
 }

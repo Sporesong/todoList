@@ -4,7 +4,12 @@ let tasks = [];
 
 //Skapa uppgiftselement
 function renderTask(task) {
-
+	const list = document.querySelector(".toDoList");
+	const isDone = task.checked ? "done":"";
+	const listItem = document.createElement("li");
+	listItem.setAttribute("class", `task ${isDone}`);
+	listItem.setAttribute("data-key", task.id);
+	listItem.innerHTML = "";
 }
 
 //lägg till uppgifter i array

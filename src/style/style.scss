@@ -91,6 +91,15 @@ label,
   margin: 0 auto;
 }
 
+.sortIconWrapper {
+  display: flex;
+  justify-content: right;
+}
+
+.sortIconWrapper span {
+  font-size: 2.5rem;
+}
+
 #addToDo {
   font-size: 18px;
   color: #283618;

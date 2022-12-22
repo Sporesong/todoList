@@ -48,9 +48,9 @@ h3 {
 
 ul {
   cursor: pointer;
-  list-style: none;
   margin: 0;
   padding: 0;
+  list-style: none;
 }
 
 li {
@@ -74,6 +74,25 @@ label,
     "GRAD" 0,
     "opsz" 48;
   margin-right: 10px;
+}
+
+.check {
+  width: 0.8em;
+  height: 0.8em;
+  cursor: pointer;
+  border-radius: 50%;
+  background-color: white;
+  border: 1px solid rgb(255 255 255);
+  appearance: none;
+}
+
+.check:checked {
+  background-color: #1dd2af;
+}
+
+.complete {
+  color: rgb(192 192 192 / 80%);
+  text-decoration: line-through;
 }
 
 .pageContainer {
@@ -216,14 +235,6 @@ li:hover span {
     color: #fefae0;
     outline: 2px solid #dda15e;
     margin-left: 10px;
-    border-radius: 10px;
-  }
-
-  input[type="time"] {
-    background-color: #283618;
-    color: #fefae0;
-    outline: 2px solid #dda15e;
-    margin: 10px 0 0 63px;
     border-radius: 10px;
   }
 

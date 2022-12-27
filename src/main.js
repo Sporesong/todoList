@@ -33,7 +33,6 @@ function renderNewTask(task) {
 	  `;
 	list.prepend(listItem);
 }
-//onclick="taskComplete(this)" ${task.completed ? "checked" : ""
 //spara uppgift när man trycker på lägg till knappen
 const addToDoButton = document.querySelector(".addToDoButton");
 addToDoButton.addEventListener("click", addTask);
@@ -58,11 +57,12 @@ function addTask(event) {
 	}
 
 	renderNewTask(task);
+	//lägg till id på checkbox
 	const checkBox = document.querySelector(`#check${task.id}`);
 	console.log(checkBox);
 	//checkBox.addEventListener("change", );
 	//TODO: gör klart task complete när man klickar checkbox.
-	
+
 }
 //function completeTask() {
 

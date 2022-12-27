@@ -24,6 +24,7 @@ body {
 }
 
 header {
+  position: relative;
   height: 30vh;
   background-image: url("../../images/rosmarinOchOlja.jpg");
   background-position: center;
@@ -53,7 +54,7 @@ ul {
   list-style: none;
 }
 
-li {
+.categorymenu li {
   background: #dda15e;
   line-height: 2em;
   margin: 0;
@@ -67,6 +68,11 @@ label,
   color: #283618;
 }
 
+.toDoList label {
+  display: block;
+  word-wrap: wrap;
+}
+
 .material-symbols-outlined {
   font-variation-settings:
     "FILL" 0,
@@ -74,24 +80,34 @@ label,
     "GRAD" 0,
     "opsz" 48;
   margin-right: 10px;
+  margin-top: 4px;
 }
 
 .check {
-  width: 0.8em;
-  height: 0.8em;
+  width: 1.5rem;
+  height: 1.5rem;
   cursor: pointer;
-  border-radius: 50%;
-  background-color: white;
-  border: 1px solid rgb(255 255 255);
+  background-color: #fefae0;
+  border: 3px solid #283618;
+  border-radius: 20%;
   appearance: none;
+  margin-right: 1rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  vertical-align: middle;
+  position: relative;
 }
 
-.check:checked {
-  background-color: #1dd2af;
+.check:checked::after {
+  content: "\2714";
+  font-size: 2rem;
+  color: #606c38;
+  position: relative;
+  bottom: 1.2rem;
+  left: -0.1rem;
 }
 
 .complete {
-  color: rgb(192 192 192 / 80%);
   text-decoration: line-through;
 }
 
@@ -110,32 +126,49 @@ label,
   margin: 0 auto;
 }
 
-.sortIconWrapper {
-  display: flex;
-  justify-content: right;
+.toDoList {
+  position: absolute;
+  left: 360px;
+  width: calc(100% - 360px);
 }
 
-.sortIconWrapper span {
-  font-size: 2.5rem;
+.toDoList li {
+  display: block;
+  align-items: center;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: #fefae0;
+  border: 3px solid #606c38;
+  color: #283618;
+  text-align: justify;
+  vertical-align: middle;
+}
+
+header .material-symbols-outlined {
+  position: absolute;
+  height: 30px;
+  width: 30px;
+  right: 10px;
+  font-size: 32px;
+  top: 180px;
 }
 
 #addToDo {
   font-size: 18px;
   color: #283618;
-  background: #fcfaef;
+  background: #fefae0;
   border: 2px solid #283618;
   width: 100%;
   padding: 10px 10px 10px 20px;
   border-radius: 22px;
 }
 
-li:nth-child(2n) {
+.categorymenu li:nth-child(2n) {
   background: #dda15e;
 }
 
-li.clicked {
+.categorymenu li.clicked {
   color: #fefae0;
-  text-decoration: line-through;
 }
 
 #addToDo:focus {
@@ -145,13 +178,12 @@ li.clicked {
   transition: 0.1s;
 }
 
-i.fa-trash {
-  margin: 7px;
+.categoryMenu li:hover span {
+  color: #606c38;
 }
 
-li:hover span {
-  opacity: 1;
-  width: 40px;
+.toDoList li button:hover span {
+  color: #bc6c25;
 }
 
 @media screen and (min-width: 800px) {
@@ -179,12 +211,25 @@ li:hover span {
   button {
     background-color: #dda15e;
     color: #283618;
-    outline: 2px solid #bc6c25;
+    outline: 3px solid #bc6c25;
     border-radius: 10px;
     display: block;
     margin: 10px auto;
     font-size: 1.3rem;
     font-weight: 600;
+  }
+
+  .deleteTask {
+    width: 40px;
+    display: inline;
+    background-color: #606c38;
+    color: #fefae0;
+    outline: #283618;
+    margin-left: 1rem;
+  }
+
+  .deleteTask:focus {
+    outline: #fefae0;
   }
 
   .line {
@@ -194,8 +239,6 @@ li:hover span {
   }
 
   .pageContainer {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
     background-color: beige;
     gap: 10px;
   }
@@ -204,13 +247,11 @@ li:hover span {
     visibility: visible;
     background-color: #bc6c25;
     height: 100vh;
-    grid-column: 1/1;
     align-items: center;
     position: absolute;
   }
 
   .inputContainer {
-    grid-column: 1/1;
     padding: 10px 15px;
     position: relative;
   }

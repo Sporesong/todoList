@@ -44,7 +44,7 @@ function addTask(event) {
 	const deadline = deadlineInput.value ? new Date(deadlineInput.value).getTime() : "";
 	const categoryPicker =  document.querySelector("#categoryPicker");
 	const category = categoryPicker.value ?? null; 
-	const task = {id: Date.now(), text: text, deadline: deadline, category: category, completed:false};
+	const task = {id: Date.now().toString(), text: text, deadline: deadline, category: category, completed:false};
 	tasks.unshift(task);
 	localStorage.setItem("tasks", JSON.stringify(tasks));
 	if (text) {
@@ -60,11 +60,25 @@ function addTask(event) {
 	//lägg till id på checkbox
 	const checkBox = document.querySelector(`#check${task.id}`);
 	console.log(checkBox);
-	//checkBox.addEventListener("change", );
-	//TODO: gör klart task complete när man klickar checkbox.
+	checkBox.addEventListener("change",toggleCompleteTask);
+	//TODO: gör renderTasks funktion och anropa den på rätt ställen i koden, gör så att info hämtas ur localStorage ist. för tasks
 
 }
-//function completeTask() {
+//funktion för att checka i task och stryka över texten samt flytta dem sist i arrayen
+function toggleCompleteTask(event) {
+	if (event.target.checked) {
+		event.target.parentNode.querySelector(".taskText").classList.add("complete");
+		const index = tasks.findIndex(function compareId(task){
+			return event.target.parentElement.parentElement.id === task.id; //checkar li-id
+		});
+		const task= tasks.splice(index, 1)[0];
+		tasks.push(task);
+		console.log(tasks);
+	}
+	else {
+		event.target.parentNode.querySelector(".taskText").classList.remove("complete");
 
+	}
+}
 
 

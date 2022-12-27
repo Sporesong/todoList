@@ -1,4 +1,11 @@
 import "./style/style.scss";
+let categoryIcons = {
+	FamiljOchVaenner: "diversity_3",
+	Studier: "import_contacts",
+	Husdjur: "pets",
+	Handla: "shopping_bag",
+	Standard: ""
+};
 //ladda upp sparade tasks från local storage
 let tasks = [];
 window.onload = loadTasks;
@@ -16,8 +23,9 @@ function renderNewTask(task) {
 	listItem.innerHTML = `
 	<label for="check">	
 	<input type="checkbox" id="check${task.id}" class="check" name="check" value="yes">
-	<span class="taskText">${task.text} </span><br>
-	<span class="taskDeadline"> ${new Date(task.deadline).toDateString()}</span>
+	<span class="taskText">${task.text} </span>
+	<span class="material-symbols-outlined">${categoryIcons[task.category]}</span>
+	<span class="taskDeadline"> ${task.deadline ? new Date(task.deadline).toDateString() : ""}</span><br>
 		<button class="deleteTask">
 	</label>
 		<span class="material-symbols-outlined">delete</span>
@@ -53,8 +61,10 @@ function addTask(event) {
 	const checkBox = document.querySelector(`#check${task.id}`);
 	console.log(checkBox);
 	//checkBox.addEventListener("change", );
-	//TODO: gör så att kategori återställs till tomt värde efter varje submit-klick, samma för datum.
+	//TODO: gör klart task complete när man klickar checkbox.
+	
 }
-function completeTask() {
+//function completeTask() {
 
-}
+
+

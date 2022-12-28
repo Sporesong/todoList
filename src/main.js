@@ -6,7 +6,7 @@ let categoryIcons = {
 	Handla: "shopping_bag",
 	Standard: ""
 };
-//ladda upp sparade tasks från local storage
+//ladda upp sparade tasks från local storage och kalla på att rita ut tasks
 let tasks = [];
 window.onload = loadTasks;
 function loadTasks() {
@@ -14,10 +14,11 @@ function loadTasks() {
 	tasks = taskString === null ? [] : Array.from(JSON.parse(taskString));
 	renderTasks();
 }
+//rita ut tasks från localstorage arrayen
 function renderTasks() {
 	const toDoList = document.querySelector(".toDoList");
-	toDoList.innerHTML = "";
-	tasks.forEach (function createStoredElement(task) {
+	toDoList.innerHTML = ""; // töm Ul innan tasks ritas ut på nytt
+	tasks.forEach (function createStoredElement(task) { //loopa igenom taskslistan och skapa li till varje task
 		const listItem = document.createElement("li");
 		listItem.setAttribute("id",task.id);
 		listItem.innerHTML +=  `
@@ -27,16 +28,18 @@ function renderTasks() {
 		<span class="taskText ${task.completed === true ? "complete" : ""}">${task.text} </span>
 		<span class="taskDeadline"> ${task.deadline ? new Date(task.deadline).toDateString() : ""}</span><br>
 			<button class="deleteTask">
-		</label>
-			<span class="material-symbols-outlined">delete</span>
+				<span class="material-symbols-outlined">delete</span>
 			</button>
+		</label>
 		  `;
 		toDoList.append(listItem);
-		const checkBox = document.querySelector(`#check${task.id}`);
+		const checkBox = document.querySelector(`#check${task.id}`); // lägg till eventlisteners 
 		checkBox.addEventListener("change",toggleCompleteTask);
+		const deleteTaskButton = listItem.querySelector(".deleteTask");
+		deleteTaskButton.addEventListener("click", deleteTask);
 	});
 }
-//Skapa uppgiftselement
+//rita ut nya tasks när man trycker på lägg till knappen
 function renderNewTask(task) {
 	const list = document.querySelector(".toDoList");
 	const listItem = document.createElement("li");
@@ -44,14 +47,14 @@ function renderNewTask(task) {
 	listItem.classList.add("listItem");
 	listItem.innerHTML = `
 	<label for="check">	
-	<input type="checkbox" id="check${task.id}" class="check" name="check">
-	<span class="material-symbols-outlined">${categoryIcons[task.category]}</span>
-	<span class="taskText">${task.text} </span>
-	<span class="taskDeadline"> ${task.deadline ? new Date(task.deadline).toDateString() : ""}</span><br>
+		<input type="checkbox" id="check${task.id}" class="check" name="check">
+		<span class="material-symbols-outlined">${categoryIcons[task.category]}</span>
+		<span class="taskText">${task.text} </span>
+		<span class="taskDeadline"> ${task.deadline ? new Date(task.deadline).toDateString() : ""}</span><br>
 		<button class="deleteTask">
-	</label>
-		<span class="material-symbols-outlined">delete</span>
+			<span class="material-symbols-outlined">delete</span>
 		</button>
+	</label>
 	  `;
 	list.prepend(listItem);
 }
@@ -59,7 +62,7 @@ function renderNewTask(task) {
 const addToDoButton = document.querySelector(".addToDoButton");
 addToDoButton.addEventListener("click", addTask);
 function addTask(event) {
-	event.preventDefault();
+	event.preventDefault(); //gör att sidan inte laddar om
 	const input = document.querySelector("#addToDo");
 	const text = input.value;
 	const deadlineInput = document.querySelector("#datePicker");
@@ -68,8 +71,8 @@ function addTask(event) {
 	const category = categoryPicker.value ?? null; 
 	const task = {id: Date.now().toString(), text: text, deadline: deadline, category: category, completed:false};
 	tasks.unshift(task);
-	localStorage.setItem("tasks", JSON.stringify(tasks));
-	if (text) {
+	localStorage.setItem("tasks", JSON.stringify(tasks)); //sparar i local storage
+	if (text) { // tömmer input så man kan skriva något nytt
 		input.value = "";
 		input.focus();
 	}
@@ -79,26 +82,35 @@ function addTask(event) {
 	}
 
 	renderNewTask(task);
-	//lägg till id på checkbox
+	//lägg till eventlisteners 
 	const checkBox = document.querySelector(`#check${task.id}`);
 	checkBox.addEventListener("change",toggleCompleteTask);
-	//TODO: gör renderTasks funktion och anropa den på rätt ställen i koden, gör så att info hämtas ur localStorage ist. för tasks
-	//töm ul i inner html i början av rendertasks 
+	const deleteTaskButton = document.querySelector(".deleteTask");
+	deleteTaskButton.addEventListener("click", deleteTask);
+	//TODO: ta bort check id? Flytta på eventlisteners deklaration?
 
 }
-//funktion för att checka i task och flytta dem sist i arrayen
+//funktion för att checka i task som klar och flytta dem sist i arrayen
 function toggleCompleteTask(event) {
 	const index = tasks.findIndex(function compareId(task){
 		return event.target.parentElement.parentElement.id === task.id; //checkar li-id
 	});
-	if (event.target.checked) {
+	if (event.target.checked) { //ta bort ur sin plats på listan och lägger till sist i listan
 		const task = tasks.splice(index, 1)[0];
 		task.completed = true;
 		tasks.push(task);
 	}
 	else {
-		tasks[index].completed = false;
+		tasks[index].completed = false; //ta bort check ur rutan
 	}
-	localStorage.setItem("tasks", JSON.stringify(tasks));
+	localStorage.setItem("tasks", JSON.stringify(tasks)); //spara till localstorage och rita ut
+	renderTasks();
+}
+function deleteTask(event) { //ta bort task vi tryck på delete knappen
+	const index = tasks.findIndex(function compareId(task){
+		return event.target.parentElement.parentElement.parentElement.id === task.id; //checkar li-id
+	});
+	tasks.splice(index, 1);
+	localStorage.setItem("tasks", JSON.stringify(tasks)); //sparar i localstorage och ritar ut
 	renderTasks();
 }

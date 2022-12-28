@@ -20,11 +20,12 @@ function renderNewTask(task) {
 	const list = document.querySelector(".toDoList");
 	const listItem = document.createElement("li");
 	listItem.setAttribute("id",task.id);
+	listItem.classList.add("listItem");
 	listItem.innerHTML = `
 	<label for="check">	
 	<input type="checkbox" id="check${task.id}" class="check" name="check" value="yes">
-	<span class="taskText">${task.text} </span>
 	<span class="material-symbols-outlined">${categoryIcons[task.category]}</span>
+	<span class="taskText">${task.text} </span>
 	<span class="taskDeadline"> ${task.deadline ? new Date(task.deadline).toDateString() : ""}</span><br>
 		<button class="deleteTask">
 	</label>

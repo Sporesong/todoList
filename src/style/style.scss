@@ -149,6 +149,10 @@ label,
   vertical-align: middle;
 }
 
+a {
+  border-radius: 5px;
+}
+
 header .material-symbols-outlined {
   position: absolute;
   height: 30px;
@@ -240,6 +244,8 @@ header .material-symbols-outlined {
   button.deleteTask {
     display: flex;
     justify-content: center;
+    position: absolute;
+    right: 2rem;
   }
 
   .deleteTask:focus {

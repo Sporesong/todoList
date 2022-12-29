@@ -17,7 +17,16 @@
   <header>
     <h1 class="todoHeader">Att göra</h1>
     <h3 class="dateToday">2022-12-14</h3>
-      <span class="material-symbols-outlined">sort</span>
+          <div class="sortItemsWrapper">
+            <label class="sortItemsLabel" for="sortItems">Sortera</label>
+            <span class="material-symbols-outlined sortIcon">sort</span>
+            <select name="sortItems" class="hidden" id="sortItems">
+              <option value="text">Namn</option>
+              <option value="deadline">Deadline</option>
+              <option value="tillagd">Senast tillagd</option>
+            </select>
+          </div>
+     </div>
     </div>
   </header>
   <div class="pageContainer">
@@ -46,43 +55,43 @@
         </div>
         <ul class="categoryMenu">
           <li>
-            <a href="#">
+            <a>
               <span class="material-symbols-outlined">
                 task
                 </span>
-                <span class="item">Alla uppgifter</span>
+                <span class="item all">Alla uppgifter</span>
             </a>
           </li>
           <li>
-              <a href="#">
+              <a>
                 <span class="material-symbols-outlined">
                   diversity_3
                   </span>
-                  <span class="item">Familj och vänner</span>
+                  <span class="item social">Familj och vänner</span>
               </a>
           </li>
           <li>
-              <a href="#">
+              <a>
                 <span class="material-symbols-outlined">
                   import_contacts
                   </span>
-                  <span class="item">Studier</span>
+                  <span class="item study">Studier</span>
               </a>
           </li>
           <li>
-              <a href="#">
+              <a>
                 <span class="material-symbols-outlined">
                   pets
                   </span>
-                  <span class="item">Husdjur</span>
+                  <span class="item pets">Husdjur</span>
               </a>
           </li>
           <li>
-              <a href="#">
+              <a>
                 <span class="material-symbols-outlined">
                   shopping_bag
                   </span>
-                  <span class="item">Handla</span>
+                  <span class="item shop">Handla</span>
               </a>
           </li>
       </aside>

@@ -8,12 +8,17 @@ let categoryIcons = {
 };
 //ladda upp sparade tasks från local storage och kalla på att rita ut tasks
 let tasks = [];
-window.onload = loadTasks;
+loadTasks();
+renderTasks();
 function loadTasks() {
 	const taskString = localStorage.getItem("tasks");
 	tasks = taskString === null ? [] : Array.from(JSON.parse(taskString));
-	renderTasks();
 }
+function deadlineCheck () {
+	const timeNow = Date.now();
+	
+}
+
 //rita ut tasks från localstorage arrayen
 function renderTasks() {
 	const toDoList = document.querySelector(".toDoList");
@@ -112,5 +117,61 @@ function deleteTask(event) { //ta bort task vi tryck på delete knappen
 	});
 	tasks.splice(index, 1);
 	localStorage.setItem("tasks", JSON.stringify(tasks)); //sparar i localstorage och ritar ut
+	renderTasks();
+}
+//sorteringsfunktion
+const sortOptions = document.querySelector("#sortItems");
+sortOptions.addEventListener("change", sortTasks);
+function sortTasks() {
+	const sortValue = sortOptions.value;
+	if (sortValue === "deadline") {
+		tasks.sort((a, b) => a.deadline - b.deadline);
+	} else if (sortValue === "text") {
+		tasks.sort((a, b) => a.text.localeCompare(b.text));
+	} else if (sortValue === "tillagd") {
+		tasks.sort((a, b) => b.id - a.id);
+	}
+	renderTasks();
+}
+//toggla sorteringsmenyn synlig och osynlig
+const sortItemsLabel = document.querySelector(".sortItemsLabel");
+sortItemsLabel.addEventListener("click", toggleSort);
+const sortSelect = document.querySelector("#sortItems");
+function toggleSort () {
+	if (sortSelect.classList.contains("hidden")) {
+		sortSelect.classList.remove("hidden");
+	} else {
+		sortSelect.classList.add("hidden");
+	}
+}
+document.querySelector(".all").addEventListener("click", categorySort);
+document.querySelector(".social").addEventListener("click", categorySort);
+document.querySelector(".study").addEventListener("click", categorySort);
+document.querySelector(".pets").addEventListener("click", categorySort);
+document.querySelector(".shop").addEventListener("click", categorySort);
+
+function categorySort (event) {
+	loadTasks();
+
+	if (event.target.innerHTML === "Familj och vänner") {
+		tasks = tasks.filter(function(task){
+			return task.category === "FamiljOchVaenner";
+		});
+	}
+	else if (event.target.innerHTML === "Studier") {
+		tasks = tasks.filter(function(task){
+			return task.category === "Studier";
+		});
+	}
+	else if (event.target.innerHTML === "Husdjur") {
+		tasks = tasks.filter(function(task){
+			return task.category === "Husdjur";
+		});
+	}
+	else if (event.target.innerHTML === "Handla") {
+		tasks = tasks.filter(function(task){
+			return task.category === "Handla";
+		});
+	}
 	renderTasks();
 }

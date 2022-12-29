@@ -8,12 +8,14 @@ let categoryIcons = {
 };
 //ladda upp sparade tasks från local storage och kalla på att rita ut tasks
 let tasks = [];
-window.onload = loadTasks;
+loadTasks();
+renderTasks();
 function loadTasks() {
 	const taskString = localStorage.getItem("tasks");
 	tasks = taskString === null ? [] : Array.from(JSON.parse(taskString));
-	renderTasks();
 }
+
+
 //rita ut tasks från localstorage arrayen
 function renderTasks() {
 	const toDoList = document.querySelector(".toDoList");
@@ -138,4 +140,35 @@ function toggleSort () {
 	} else {
 		sortSelect.classList.add("hidden");
 	}
+}
+document.querySelector(".all").addEventListener("click", categorySort);
+document.querySelector(".social").addEventListener("click", categorySort);
+document.querySelector(".study").addEventListener("click", categorySort);
+document.querySelector(".pets").addEventListener("click", categorySort);
+document.querySelector(".shop").addEventListener("click", categorySort);
+
+function categorySort (event) {
+	loadTasks();
+
+	if (event.target.innerHTML === "Familj och vänner") {
+		tasks = tasks.filter(function(task){
+			return task.category === "FamiljOchVaenner";
+		});
+	}
+	else if (event.target.innerHTML === "Studier") {
+		tasks = tasks.filter(function(task){
+			return task.category === "Studier";
+		});
+	}
+	else if (event.target.innerHTML === "Husdjur") {
+		tasks = tasks.filter(function(task){
+			return task.category === "Husdjur";
+		});
+	}
+	else if (event.target.innerHTML === "Handla") {
+		tasks = tasks.filter(function(task){
+			return task.category === "Handla";
+		});
+	}
+	renderTasks();
 }

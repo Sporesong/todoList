@@ -14,7 +14,10 @@ function loadTasks() {
 	const taskString = localStorage.getItem("tasks");
 	tasks = taskString === null ? [] : Array.from(JSON.parse(taskString));
 }
-
+function deadlineCheck () {
+	const timeNow = Date.now();
+	
+}
 
 //rita ut tasks från localstorage arrayen
 function renderTasks() {

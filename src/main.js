@@ -115,10 +115,10 @@ function deleteTask(event) { //ta bort task vi tryck på delete knappen
 	renderTasks();
 }
 //sorteringsfunktion
-const sortIcon = document.querySelector(".sortIcon");
-sortIcon.addEventListener("change", sortTasks);
+const sortOptions = document.querySelector("#sortItems");
+sortOptions.addEventListener("change", sortTasks);
 function sortTasks() {
-	const sortValue = sortIcon.value;
+	const sortValue = sortOptions.value;
 	if (sortValue === "deadline") {
 		tasks.sort((a, b) => a.deadline - b.deadline);
 	} else if (sortValue === "text") {
@@ -126,9 +126,9 @@ function sortTasks() {
 	} else if (sortValue === "tillagd") {
 		tasks.sort((a, b) => b.id - a.id);
 	}
-	
 	renderTasks();
 }
+//toggla sorteringsmenyn synlig och osynlig
 const sortItemsLabel = document.querySelector(".sortItemsLabel");
 sortItemsLabel.addEventListener("click", toggleSort);
 const sortSelect = document.querySelector("#sortItems");

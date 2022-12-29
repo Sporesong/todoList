@@ -114,3 +114,28 @@ function deleteTask(event) { //ta bort task vi tryck på delete knappen
 	localStorage.setItem("tasks", JSON.stringify(tasks)); //sparar i localstorage och ritar ut
 	renderTasks();
 }
+//sorteringsfunktion
+const sortIcon = document.querySelector(".sortIcon");
+sortIcon.addEventListener("change", sortTasks);
+function sortTasks() {
+	const sortValue = sortIcon.value;
+	if (sortValue === "deadline") {
+		tasks.sort((a, b) => a.deadline - b.deadline);
+	} else if (sortValue === "text") {
+		tasks.sort((a, b) => a.text.localeCompare(b.text));
+	} else if (sortValue === "tillagd") {
+		tasks.sort((a, b) => b.id - a.id);
+	}
+	
+	renderTasks();
+}
+const sortItemsLabel = document.querySelector(".sortItemsLabel");
+sortItemsLabel.addEventListener("click", toggleSort);
+const sortSelect = document.querySelector("#sortItems");
+function toggleSort () {
+	if (sortSelect.classList.contains("hidden")) {
+		sortSelect.classList.remove("hidden");
+	} else {
+		sortSelect.classList.add("hidden");
+	}
+}

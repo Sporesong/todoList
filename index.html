@@ -17,7 +17,16 @@
   <header>
     <h1 class="todoHeader">Att göra</h1>
     <h3 class="dateToday">2022-12-14</h3>
-      <span class="material-symbols-outlined">sort</span>
+          <div class="sortItemsWrapper">
+            <label class="sortItemsLabel" for="sortItems">Sortera</label>
+            <span class="material-symbols-outlined sortIcon">sort</span>
+            <select name="sortItems" class="hidden" id="sortItems">
+              <option value="text">Namn</option>
+              <option value="deadline">Deadline</option>
+              <option value="tillagd">Senast tillagd</option>
+            </select>
+          </div>
+     </div>
     </div>
   </header>
   <div class="pageContainer">

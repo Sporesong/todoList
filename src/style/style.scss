@@ -175,6 +175,12 @@ a {
   width: 0;
 }
 
+.deadlineExpired {
+  color: darkred;
+  border: 2px solid darkred;
+  text-decoration: line-through;
+}
+
 #addToDo {
   font-size: 18px;
   color: #283618;
@@ -206,6 +212,11 @@ a {
 
 .toDoList li button:hover span {
   color: #bc6c25;
+}
+
+.soonExpired {
+  color: darkorange;
+  border: 2px solid darkorange;
 }
 
 @media screen and (min-width: 800px) {

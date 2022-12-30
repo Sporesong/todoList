@@ -17,21 +17,25 @@
   <header>
     <h1 class="todoHeader">Att göra</h1>
     <h3 class="dateToday">2022-12-14</h3>
-          <div class="sortItemsWrapper">
-            <label class="sortItemsLabel" for="sortItems">Sortera</label>
-            <span class="material-symbols-outlined sortIcon">sort</span>
-            <select name="sortItems" class="hidden" id="sortItems">
-              <option value="text">Namn</option>
-              <option value="deadline">Deadline</option>
-              <option value="tillagd">Senast tillagd</option>
-            </select>
-          </div>
-     </div>
-    </div>
+    <button class="plusWrapper" aria-label="lägg till uppgift">
+      <span class="material-symbols-outlined">add_circle</span>
+    </button>
+      <button class="sortItemsWrapper" aria-label="sortera uppgifter">
+        <label class="sortItemsLabel" for="sortItems">Sortera</label>
+        <span class="material-symbols-outlined sortIcon">sort</span>
+        <select name="sortItems" class="hidden" id="sortItems">
+          <option value="text">Namn</option>
+          <option value="deadline">Deadline</option>
+          <option value="tillagd">Senast tillagd</option>
+        </select>
+      </button>
   </header>
   <div class="pageContainer">
       <aside class="leftMenuDesktop">
         <div class="inputContainer">
+          <button class="closeAddTask" aria-label="close this form">
+            <span class="material-symbols-outlined">close</span>
+          </button>
           <label class="addTodoLabel" for="addToDo">Ny uppgift</label>
           <input name="addToDo" id="addToDo" type="text" placeholder="Lägg till uppgift här" />
         <div class="datepickerDiv">
@@ -48,51 +52,51 @@
             <option value="Handla">Handla</option>
           </select>
         </div>
-        <button class="addToDoButton"  type="button" aria-label="Add task">
+        <button class="addToDoButton"  type="button" aria-label="Lägg till uppgift">
           Lägg till
           </button>
         <div class="line">
         </div>
         <ul class="categoryMenu">
           <li>
-            <a>
+            <button class="categoryMenuButton">
               <span class="material-symbols-outlined">
                 task
                 </span>
                 <span class="item all">Alla uppgifter</span>
-            </a>
+              </button>
           </li>
           <li>
-              <a>
+              <button class="categoryMenuButton">
                 <span class="material-symbols-outlined">
                   diversity_3
                   </span>
                   <span class="item social">Familj och vänner</span>
-              </a>
+                </button>
           </li>
           <li>
-              <a>
+              <button class="categoryMenuButton">
                 <span class="material-symbols-outlined">
                   import_contacts
                   </span>
                   <span class="item study">Studier</span>
-              </a>
+                </button>
           </li>
           <li>
-              <a>
+              <button class="categoryMenuButton">
                 <span class="material-symbols-outlined">
                   pets
                   </span>
                   <span class="item pets">Husdjur</span>
-              </a>
+                </button>
           </li>
           <li>
-              <a>
+              <button class="categoryMenuButton">
                 <span class="material-symbols-outlined">
                   shopping_bag
                   </span>
                   <span class="item shop">Handla</span>
-              </a>
+                </button>
           </li>
       </aside>
       <ul class="toDoList">

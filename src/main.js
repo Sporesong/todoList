@@ -1,4 +1,5 @@
 import "./style/style.scss";
+import "./style/desktop.scss";
 let categoryIcons = {
 	FamiljOchVaenner: "diversity_3",
 	Studier: "import_contacts",
@@ -6,6 +7,14 @@ let categoryIcons = {
 	Handla: "shopping_bag",
 	Standard: ""
 };
+const addButton = document.querySelector(".plusWrapper");
+const addButtonClose = document.querySelector(".closeAddTask");
+const addTaskForm = document.querySelector(".inputContainer");
+addButton.addEventListener("click", addFormOpen);
+addButtonClose.addEventListener("click", addFormOpen);
+function addFormOpen() {
+	addTaskForm.classList.toggle("open");
+}
 //ladda upp sparade tasks från local storage och kalla på att rita ut tasks
 let tasks = [];
 loadTasks();
@@ -15,6 +24,7 @@ function loadTasks() {
 	tasks = taskString === null ? [] : Array.from(JSON.parse(taskString));
 }
 function isExpired (listItem, deadlineTime) {
+	if (!deadlineTime){return;}
 	const timeNow = Date.now();
 	{	
 		const deadlineSpan = listItem.querySelector(".taskDeadline");  
@@ -26,7 +36,6 @@ function isExpired (listItem, deadlineTime) {
 			deadlineSpan.classList.add("soonExpired");
 			console.log("soon expired");
 		}
-		else return;
 	}
 }
 //rita ut tasks från localstorage arrayen
@@ -37,11 +46,11 @@ function renderTasks() {
 		const listItem = document.createElement("li");
 		listItem.setAttribute("id",task.id);
 		listItem.innerHTML +=  `
-		<label for="check">	
+		<label class="checkLabel" for="check">	
 		<input type="checkbox" id="check${task.id}" class="check" name="check" ${task.completed === true ? "checked" : ""}>
 		<span class="material-symbols-outlined">${categoryIcons[task.category]}</span>
 		<span class="taskText ${task.completed === true ? "complete" : ""}">${task.text} </span>
-		<span class="taskDeadline"> ${task.deadline ? new Date(task.deadline).toDateString() : ""}</span><br>
+		<span class="taskDeadline"> ${task.deadline ? new Date(task.deadline).toDateString() : ""}</span>
 			<button class="deleteTask">
 				<span class="material-symbols-outlined">delete</span>
 			</button>
@@ -145,16 +154,13 @@ function sortTasks() {
 	renderTasks();
 }
 //toggla sorteringsmenyn synlig och osynlig
-const sortItemsLabel = document.querySelector(".sortItemsLabel");
-sortItemsLabel.addEventListener("click", toggleSort);
+const sortItemsLabel = document.querySelector(".sortItemsWrapper");
+sortItemsLabel.addEventListener("click", viewSort);
 const sortSelect = document.querySelector("#sortItems");
-function toggleSort () {
-	if (sortSelect.classList.contains("hidden")) {
-		sortSelect.classList.remove("hidden");
-	} else {
-		sortSelect.classList.add("hidden");
-	}
+function viewSort () {
+	sortSelect.classList.remove("hidden");
 }
+
 document.querySelector(".all").addEventListener("click", categorySort);
 document.querySelector(".social").addEventListener("click", categorySort);
 document.querySelector(".study").addEventListener("click", categorySort);

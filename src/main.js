@@ -14,11 +14,21 @@ function loadTasks() {
 	const taskString = localStorage.getItem("tasks");
 	tasks = taskString === null ? [] : Array.from(JSON.parse(taskString));
 }
-function deadlineCheck () {
+function isExpired (listItem, deadlineTime) {
 	const timeNow = Date.now();
-	
+	{	
+		const deadlineSpan = listItem.querySelector(".taskDeadline");  
+		if (timeNow >= deadlineTime){
+			deadlineSpan.classList.add("deadlineExpired");
+			console.log("expired");	
+		}
+		else if (deadlineTime - timeNow <= 432000000) {
+			deadlineSpan.classList.add("soonExpired");
+			console.log("soon expired");
+		}
+		else return;
+	}
 }
-
 //rita ut tasks från localstorage arrayen
 function renderTasks() {
 	const toDoList = document.querySelector(".toDoList");
@@ -37,6 +47,7 @@ function renderTasks() {
 			</button>
 		</label>
 		  `;
+		isExpired(listItem, task.deadline);
 		toDoList.append(listItem);
 		const checkBox = document.querySelector(`#check${task.id}`); // lägg till eventlisteners 
 		checkBox.addEventListener("change",toggleCompleteTask);

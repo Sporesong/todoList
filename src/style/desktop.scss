@@ -38,6 +38,11 @@
     height: 0;
   }
 
+  #addToDo {
+    display: block;
+    margin: 10px auto;
+  }
+
   #addToDo:hover {
     background-color: white;
   }
@@ -72,6 +77,22 @@
     top: 160px;
     right: 0;
     font-size: 1rem;
+  }
+
+  .sortItemsWrapper:hover {
+    border: 3px solid #606c38;
+  }
+
+  .sortItemsLabel {
+    position: absolute;
+    top: 165px;
+    right: 50px;
+  }
+
+  #sortItems {
+    position: absolute;
+    top: 175px;
+    right: 50px;
   }
 
   .deleteTask {
@@ -194,10 +215,5 @@
 
   .addToDoButton:hover {
     color: #606c38;
-  }
-
-  #addToDo {
-    display: block;
-    margin: 10px auto;
   }
 }

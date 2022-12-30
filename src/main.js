@@ -158,7 +158,7 @@ const sortItemsLabel = document.querySelector(".sortItemsWrapper");
 sortItemsLabel.addEventListener("click", viewSort);
 const sortSelect = document.querySelector("#sortItems");
 function viewSort () {
-	sortSelect.classList.remove("hidden");
+	sortSelect.classList.toggle("hidden");
 }
 
 document.querySelector(".all").addEventListener("click", categorySort);

@@ -13,3 +13,6 @@ light beige #fefae0
 light tan #dda15e
 dark tan #bc6c25
 
+![alt text](/images/Screenshots/Screenshot%202023-03-20%20203013.png)
+![alt text](/images/Screenshots/Screenshot%202023-03-20%20203129.png)
+![alt text](/images/Screenshots/Screenshot%202023-03-20%20203208.png)
